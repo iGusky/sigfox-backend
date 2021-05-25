@@ -1,0 +1,19 @@
+{
+  "name": "sigfox-backend",
+  "version": "1.0.0",
+  "description": "proyecto para respaldar mensajes de dispositivos IOT",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "desarrollo": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.11" 
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
