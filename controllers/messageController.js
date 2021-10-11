@@ -16,9 +16,33 @@ exports.newMessage = async ( req, res, next ) => {
 
 exports.getMessages = async ( req, res, next ) => {
   try {
-    const messages = await Messages.find({});
-    res.json(messages);
+    const messages = await Messages.find({})
+    .sort({time: -1})
+    .limit(10);
+    res.json({messages});
   } catch (error) {
     res.send(error);
+  }
+}
+
+exports.getAllMessages = async (req, res, next) => {
+  const { page=1, limit=50 } = req.query;
+  try {
+    const messages = await Messages.find({})
+    .sort({time: -1})
+    .limit(limit * 1)
+    .skip((page-1) * limit)
+    .exec();
+
+    const count = await Messages.countDocuments();
+
+    res.json({
+      messages  ,
+      totalPages: Math.ceil(count/limit),
+      currentPage: page
+    });
+
+  } catch (error) {
+    console.error(error)
   }
 }
