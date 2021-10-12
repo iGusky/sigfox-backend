@@ -39,7 +39,8 @@ exports.getAllMessages = async (req, res, next) => {
     res.json({
       messages  ,
       totalPages: Math.ceil(count/limit),
-      currentPage: page
+      currentPage: page,
+      totalElements: count
     });
 
   } catch (error) {
